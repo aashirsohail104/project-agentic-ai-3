@@ -26,8 +26,8 @@ class Settings(BaseSettings):
         description="OpenAI-compatible base URL for Gemini",
     )
     model_name: str = Field(
-        default="gemini-2.5-flash",
-        description="Model name to use",
+        default="gemini-3.6-flash",
+        description="Model name to use for Gemini via OpenAI-compatible endpoint",
     )
 
     # Tracing

@@ -1,0 +1,66 @@
+{
+  "courses": [
+    {
+      "id": "agentic-ai-w4",
+      "title": "Agentic AI - weekdays batch 4",
+      "schedule": {
+        "days": "Mon-Thu",
+        "time": "7-9pm",
+        "timezone": "Asia/Karachi"
+      },
+      "policies": {
+        "late_submission": "48 hours, 20% penalty"
+      },
+      "assignments": [
+        {
+          "id": "a3",
+          "title": "First coded agent",
+          "due": "2026-10-02"
+        }
+      ]
+    },
+    {
+      "id": "web-dev-w2",
+      "title": "Web Development - weekdays batch 2",
+      "schedule": {
+        "days": "Tue-Fri",
+        "time": "6-8pm",
+        "timezone": "Asia/Karachi"
+      },
+      "policies": {
+        "late_submission": "24 hours, 10% penalty"
+      },
+      "assignments": [
+        {
+          "id": "wd1",
+          "title": "HTML/CSS Portfolio",
+          "due": "2026-10-15"
+        },
+        {
+          "id": "wd2",
+          "title": "React Todo App",
+          "due": "2026-10-29"
+        }
+      ]
+    },
+    {
+      "id": "data-sci-w1",
+      "title": "Data Science - weekdays batch 1",
+      "schedule": {
+        "days": "Mon-Wed",
+        "time": "7-9pm",
+        "timezone": "Asia/Karachi"
+      },
+      "policies": {
+        "late_submission": "72 hours, 15% penalty"
+      },
+      "assignments": [
+        {
+          "id": "ds1",
+          "title": "Pandas Analysis",
+          "due": "2026-10-10"
+        }
+      ]
+    }
+  ]
+}

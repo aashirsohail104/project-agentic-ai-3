@@ -1,7 +1,7 @@
 """Model configuration for Student Ops Desk - OpenAI-compatible client for Gemini."""
 
 from openai import AsyncOpenAI
-from src.config.settings import get_settings
+from config.settings import get_settings
 
 
 def create_gemini_client() -> AsyncOpenAI:

@@ -1,7 +1,7 @@
 """Tests for config settings."""
 
 import pytest
-from src.config.settings import Settings, get_settings
+from config.settings import Settings, get_settings
 
 
 class TestSettings:
@@ -24,7 +24,7 @@ class TestSettings:
 
         settings = Settings()
         assert settings.openai_base_url == "https://generativelanguage.googleapis.com/v1beta/openai/"
-        assert settings.model_name == "gemini-2.5-flash"
+        assert settings.model_name == "gemini-3.6-flash"
         assert settings.chainlit_host == "0.0.0.0"
         assert settings.chainlit_port == 8000
         assert settings.log_level == "INFO"

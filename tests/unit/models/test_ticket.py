@@ -1,7 +1,7 @@
 """Tests for Ticket model."""
 
 import pytest
-from src.models.ticket import Ticket
+from models.ticket import Ticket
 
 
 class TestTicket:

@@ -2,45 +2,45 @@
 
 ## Phase 1: Foundation
 
-- [ ] **Task 1**: Project Setup & Configuration
-- [ ] **Task 2**: Typed Data Models
-- [ ] **Task 3**: Course Repository & courses.json
-- [ ] **Task 4**: Student Runtime Context
-- [ ] **Task 5**: Base Agent with Dynamic Instructions
+- [x] **Task 1**: Project Setup & Configuration
+- [x] **Task 2**: Typed Data Models
+- [x] **Task 3**: Course Repository & courses.json
+- [x] **Task 4**: Student Runtime Context
+- [x] **Task 5**: Base Agent with Dynamic Instructions
 
 ### Checkpoint: Foundation
-- [ ] All tests pass
-- [ ] Base agent answers in terminal
+- [x] All tests pass
+- [ ] Base agent answers in terminal (needs valid API key)
 
 ## Phase 2: Core Features
 
-- [ ] **Task 6**: Course Lookup Tools
-- [ ] **Task 7**: Assignments Specialist + Handoff
-- [ ] **Task 8**: Careers Specialist + Handoff
-- [ ] **Task 9**: Summarizer Tool
-- [ ] **Task 10**: Ticket System + close_ticket Tool
+- [x] **Task 6**: Course Lookup Tools
+- [x] **Task 7**: Assignments Specialist + Handoff
+- [x] **Task 8**: Careers Specialist + Handoff
+- [x] **Task 9**: Summarizer Tool
+- [x] **Task 10**: Ticket System + close_ticket Tool
 
 ### Checkpoint: Core Features
-- [ ] End-to-end flow works
+- [ ] End-to-end flow works (needs valid API key)
 - [ ] All integration tests pass
 
 ## Phase 3: Reliability & Observability
 
-- [ ] **Task 11**: Input Guardrail
-- [ ] **Task 12**: Tool Gating + Turn Ceiling
-- [ ] **Task 13**: Hooks + Audit Trail
-- [ ] **Task 14**: Custom Runner + Request ID + Elapsed Time
-- [ ] **Task 15**: Tracing
+- [x] **Task 11**: Input Guardrail
+- [x] **Task 12**: Tool Gating + Turn Ceiling
+- [x] **Task 13**: Hooks + Audit Trail
+- [x] **Task 14**: Custom Runner + Request ID + Elapsed Time
+- [x] **Task 15**: Tracing
 
 ### Checkpoint: Reliability & Observability
-- [ ] All guardrails, gating, ceiling working
+- [ ] All guardrails, gating, ceiling working (needs valid API key)
 - [ ] Audit trail captures full conversation
 - [ ] Custom runner + tracing operational
 
 ## Phase 4: UI & Integration
 
-- [ ] **Task 16**: Chainlit UI with Per-Session Memory
-- [ ] **Task 17**: CLI Entry Point
+- [x] **Task 16**: Chainlit UI with Per-Session Memory
+- [x] **Task 17**: CLI Entry Point
 
 ## Phase 5: Testing & Verification
 

@@ -1,7 +1,7 @@
 """Tests for StudentProfile model."""
 
 import pytest
-from src.models.student import StudentProfile
+from models.student import StudentProfile
 
 
 class TestStudentProfile:

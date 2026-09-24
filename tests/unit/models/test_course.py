@@ -1,7 +1,7 @@
 """Tests for course models."""
 
 import pytest
-from src.models.course import Course, Schedule, Policies, Assignment
+from models.course import Course, Schedule, Policies, Assignment
 
 
 class TestSchedule:
