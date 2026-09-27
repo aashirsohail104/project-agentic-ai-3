@@ -51,13 +51,18 @@ async def input_guardrail_function(
     # Check for course-related keywords
     is_related = any(keyword in text for keyword in COURSE_KEYWORDS)
 
-    # Also allow greetings and basic interactions
+    # Also allow greetings and basic interactions (including variations)
     greetings = ["hello", "hi", "hey", "thanks", "thank you", "ok", "okay", "yes", "no"]
-    is_greeting = any(greeting == text.strip().lower() for greeting in greetings)
+    text_lower = text.strip().lower()
+    is_greeting = any(text_lower.startswith(greeting) for greeting in greetings)
 
-    if is_related or is_greeting:
+    # Allow profile/identity queries (student context)
+    profile_keywords = ["profile", "identity", "who am i", "my info", "my details", "student"]
+    is_profile_query = any(keyword in text_lower for keyword in profile_keywords)
+
+    if is_related or is_greeting or is_profile_query:
         return GuardrailFunctionOutput(
-            output_info=GuardrailOutput(is_course_related=True, reason="Course-related or greeting"),
+            output_info=GuardrailOutput(is_course_related=True, reason="Course-related, greeting, or profile query"),
             tripwire_triggered=False,
         )
 
