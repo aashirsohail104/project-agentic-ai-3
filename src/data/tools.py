@@ -6,8 +6,8 @@ Course data lives in courses.json and is never embedded in prompts.
 
 from typing import Optional
 from agents import function_tool, RunContextWrapper
-from context.runtime import StudentContext
-from data.repository import CourseRepository, CourseNotFoundError, AssignmentNotFoundError
+from src.context.runtime import StudentContext
+from src.data.repository import CourseRepository, CourseNotFoundError, AssignmentNotFoundError
 from models.course import Course, Assignment, Schedule, Policies
 
 

@@ -1,11 +1,11 @@
 """Integration tests for Student Ops Desk agent workflows."""
 
 import pytest
-from data.repository import CourseRepository, CourseNotFoundError, AssignmentNotFoundError
-from data.tools import get_repository
-from models.course import Course, Schedule, Policies, Assignment
-from models.student import StudentProfile
-from models.ticket import Ticket
+from src.data.repository import CourseRepository, CourseNotFoundError, AssignmentNotFoundError
+from src.data.tools import get_repository
+from src.models.course import Course, Schedule, Policies, Assignment
+from src.models.student import StudentProfile
+from src.models.ticket import Ticket
 
 
 class TestCourseToolsIntegration:
@@ -35,7 +35,7 @@ class TestCourseToolsIntegration:
 
     def test_get_course_schedule_raises_on_invalid_course(self):
         """Test that get_course_schedule raises CourseNotFoundError for invalid course."""
-        from data.repository import CourseNotFoundError
+        from src.data.repository import CourseNotFoundError
         try:
             self.repo.get_course_or_raise("invalid-course")
             assert False, "Should have raised CourseNotFoundError"
@@ -57,7 +57,7 @@ class TestCourseToolsIntegration:
 
     def test_get_assignment_by_id_raises_on_invalid_course(self):
         """Test that get_assignment_by_id raises CourseNotFoundError for invalid course."""
-        from data.repository import CourseNotFoundError
+        from src.data.repository import CourseNotFoundError
         try:
             self.repo.get_assignment_or_raise("invalid-course", "a3")
             assert False, "Should have raised CourseNotFoundError"
@@ -66,7 +66,7 @@ class TestCourseToolsIntegration:
 
     def test_get_assignment_by_id_raises_on_invalid_assignment(self):
         """Test that get_assignment_by_id raises AssignmentNotFoundError for invalid assignment."""
-        from data.repository import AssignmentNotFoundError
+        from src.data.repository import AssignmentNotFoundError
         try:
             self.repo.get_assignment_or_raise("agentic-ai-w4", "nonexistent")
             assert False, "Should have raised AssignmentNotFoundError"

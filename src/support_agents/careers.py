@@ -1,8 +1,8 @@
 """Careers Specialist Agent - cloned from base, warmer tone."""
 
 from agents import Agent
-from context import StudentContext, get_student_from_context
-from config import get_model_name
+from src.context import StudentContext, get_student_from_context
+from src.config import get_model_name
 
 MODEL_NAME = get_model_name()
 

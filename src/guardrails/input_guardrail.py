@@ -3,7 +3,7 @@
 from agents import GuardrailFunctionOutput, InputGuardrailTripwireTriggered, InputGuardrail
 from agents import RunContextWrapper, Agent
 from pydantic import BaseModel
-from context import StudentContext
+from src.context import StudentContext
 
 
 class GuardrailOutput(BaseModel):

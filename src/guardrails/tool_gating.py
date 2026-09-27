@@ -1,7 +1,7 @@
 """Tool gating - scholarship-only tools."""
 
 from agents import Agent, RunContextWrapper
-from context import StudentContext, get_student_from_context
+from src.context import StudentContext, get_student_from_context
 
 
 def is_scholarship_student(ctx: RunContextWrapper[StudentContext]) -> bool:

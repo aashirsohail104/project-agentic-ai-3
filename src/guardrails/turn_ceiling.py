@@ -1,7 +1,7 @@
 """Turn ceiling - prevents unbounded agent loops."""
 
 from agents import RunContextWrapper, Agent
-from context import StudentContext
+from src.context import StudentContext
 
 
 class TurnCeilingExceeded(Exception):

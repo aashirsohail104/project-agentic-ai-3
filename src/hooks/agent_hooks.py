@@ -2,7 +2,7 @@
 
 from typing import Any
 from agents import AgentHooks, RunContextWrapper, Agent, Tool
-from context import StudentContext
+from src.context import StudentContext
 
 
 class AgentHooksImpl(AgentHooks):

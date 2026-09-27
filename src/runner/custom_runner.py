@@ -6,8 +6,8 @@ from typing import Any, TypeVar
 from agents import Runner, RunContextWrapper, RunResult, RunConfig
 from agents.models.multi_provider import MultiProvider
 from openai import NotFoundError, RateLimitError
-from context import StudentContext
-from config.settings import get_settings
+from src.context import StudentContext
+from src.config.settings import get_settings
 
 T = TypeVar("T")
 

@@ -2,7 +2,7 @@
 
 import chainlit as cl
 from ui.session import get_or_create_session, run_agent_in_session
-from tracing import configure_tracing
+from src.tracing import configure_tracing
 
 
 # Configure tracing on startup

@@ -4,22 +4,22 @@ from typing import Optional
 from agents import Agent, RunContextWrapper, GuardrailFunctionOutput, InputGuardrail
 from pydantic import BaseModel
 
-from config import create_gemini_client, get_model_name
-from context import StudentContext, get_student_from_context
-from data.tools import (
+from src.config import create_gemini_client, get_model_name
+from src.context import StudentContext, get_student_from_context
+from src.data.tools import (
     list_courses,
     get_course_schedule,
     get_course_policies,
     get_assignment_by_id,
 )
-from guardrails.input_guardrail import create_input_guardrail
-from hooks.run_hooks import RunHooks
-from hooks.agent_hooks import AgentHooks
+from src.guardrails.input_guardrail import create_input_guardrail
+from src.hooks.run_hooks import RunHooks
+from src.hooks.agent_hooks import AgentHooks
 from .assignments import assignments_agent
 from .careers import careers_agent
 from .handoffs import create_assignments_handoff, create_careers_handoff
-from tools.summarizer import summarize_text
-from tools.ticket_tools import close_ticket
+from src.tools.summarizer import summarize_text
+from src.tools.ticket_tools import close_ticket
 
 
 # Model configuration - agent level, not global

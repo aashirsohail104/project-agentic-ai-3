@@ -2,7 +2,7 @@
 
 import os
 from agents import set_tracing_disabled, set_tracing_export_api_key, trace
-from context import StudentContext
+from src.context import StudentContext
 
 
 def configure_tracing() -> None:

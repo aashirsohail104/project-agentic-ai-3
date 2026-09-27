@@ -1,8 +1,8 @@
 """Handoff logic for specialist agents."""
 
 from agents import Agent, Handoff
-from context import StudentContext
-from config import get_model_name
+from src.context import StudentContext
+from src.config import get_model_name
 from typing import Any
 
 MODEL_NAME = get_model_name()

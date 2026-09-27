@@ -1,7 +1,7 @@
 """Course data package."""
 
-from data.repository import CourseRepository, CourseNotFoundError, AssignmentNotFoundError
-from data.tools import (
+from src.data.repository import CourseRepository, CourseNotFoundError, AssignmentNotFoundError
+from src.data.tools import (
     list_courses,
     get_course_schedule,
     get_course_policies,

@@ -2,12 +2,12 @@
 
 import argparse
 import asyncio
-from context import StudentContext, create_student_context
+from src.context import StudentContext, create_student_context
 from models.student import StudentProfile
 from agents import RunContextWrapper
-from runner import run_with_tracking
+from src.runner import run_with_tracking
 from src.support_agents.base import base_agent
-from tracing import configure_tracing
+from src.tracing import configure_tracing
 
 
 # Configure tracing
