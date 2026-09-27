@@ -1,11 +1,23 @@
 """Handoff logic for specialist agents."""
 
+from typing import Any
 from agents import Agent, Handoff
 from src.context import StudentContext
 from src.config import get_model_name
-from typing import Any
 
 MODEL_NAME = get_model_name()
+
+
+async def _invoke_assignments_handoff(ctx: Any, _: Any) -> Agent[StudentContext]:
+    """Invoke handler for assignments handoff - imports locally to avoid circular imports."""
+    from src.support_agents.assignments import assignments_agent
+    return assignments_agent
+
+
+async def _invoke_careers_handoff(ctx: Any, _: Any) -> Agent[StudentContext]:
+    """Invoke handler for careers handoff - imports locally to avoid circular imports."""
+    from src.support_agents.careers import careers_agent
+    return careers_agent
 
 
 def create_assignments_handoff(assignments_agent: Agent[StudentContext]) -> Handoff:
@@ -15,7 +27,7 @@ def create_assignments_handoff(assignments_agent: Agent[StudentContext]) -> Hand
         tool_description="Transfer to the Assignments Specialist for assignment-specific questions.",
         agent_name="AssignmentsSpecialist",
         input_json_schema={"type": "object", "properties": {}, "additionalProperties": False},
-        on_invoke_handoff=lambda ctx, _: assignments_agent,
+        on_invoke_handoff=_invoke_assignments_handoff,
     )
 
 
@@ -26,5 +38,5 @@ def create_careers_handoff(careers_agent: Agent[StudentContext]) -> Handoff:
         tool_description="Transfer to the Careers Specialist for career guidance questions.",
         agent_name="CareersSpecialist",
         input_json_schema={"type": "object", "properties": {}, "additionalProperties": False},
-        on_invoke_handoff=lambda ctx, _: careers_agent,
+        on_invoke_handoff=_invoke_careers_handoff,
     )
