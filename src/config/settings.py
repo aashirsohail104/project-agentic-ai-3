@@ -25,9 +25,14 @@ class Settings(BaseSettings):
         default="https://generativelanguage.googleapis.com/v1beta/openai/",
         description="OpenAI-compatible base URL for Gemini",
     )
-    model_name: str = Field(
+    # Model configuration for smart routing
+    simple_model_name: str = Field(
+        default="gemini-3.5-flash-lite",
+        description="Model name for simple requests (Flash-Lite)",
+    )
+    complex_model_name: str = Field(
         default="gemini-3.6-flash",
-        description="Model name to use for Gemini via OpenAI-compatible endpoint",
+        description="Model name for complex requests (full Flash)",
     )
 
     # Tracing

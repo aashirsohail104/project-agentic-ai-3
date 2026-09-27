@@ -1,7 +1,7 @@
 """Tests for config settings."""
 
 import pytest
-from config.settings import Settings, get_settings
+from src.config.settings import Settings, get_settings
 
 
 class TestSettings:
@@ -11,12 +11,12 @@ class TestSettings:
         """Test that settings loads from environment variables."""
         monkeypatch.setenv("GEMINI_API_KEY", "test-key-123")
         monkeypatch.setenv("OPENAI_BASE_URL", "https://custom.example.com/v1")
-        monkeypatch.setenv("MODEL_NAME", "custom-model")
+        monkeypatch.setenv("COMPLEX_MODEL_NAME", "custom-model")
 
         settings = Settings()
         assert settings.gemini_api_key == "test-key-123"
         assert settings.openai_base_url == "https://custom.example.com/v1"
-        assert settings.model_name == "custom-model"
+        assert settings.complex_model_name == "custom-model"
 
     def test_settings_defaults(self, monkeypatch):
         """Test that settings has correct defaults."""
@@ -24,7 +24,8 @@ class TestSettings:
 
         settings = Settings()
         assert settings.openai_base_url == "https://generativelanguage.googleapis.com/v1beta/openai/"
-        assert settings.model_name == "gemini-3.6-flash"
+        assert settings.complex_model_name == "gemini-3.6-flash"
+        assert settings.simple_model_name == "gemini-3.5-flash-lite"
         assert settings.chainlit_host == "0.0.0.0"
         assert settings.chainlit_port == 8000
         assert settings.log_level == "INFO"

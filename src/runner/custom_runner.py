@@ -1,5 +1,6 @@
-"""Custom runner - wraps every run with request ID and elapsed time."""
+"""Custom runner - wraps every run with request ID, elapsed time, and smart model routing."""
 
+import logging
 import time
 import uuid
 from typing import Any, TypeVar
@@ -8,6 +9,9 @@ from agents.models.multi_provider import MultiProvider
 from openai import NotFoundError, RateLimitError
 from src.context import StudentContext
 from src.config.settings import get_settings
+from src.config import get_model_for_request
+
+logger = logging.getLogger(__name__)
 
 T = TypeVar("T")
 
@@ -56,20 +60,29 @@ def _get_gemini_model_provider() -> MultiProvider:
     return _GEMINI_MODEL_PROVIDER
 
 
-def _build_run_config(**kwargs) -> RunConfig:
-    """Build RunConfig with Gemini model provider, preserving any user-provided settings."""
+def _build_run_config(message: str = "", context: Any = None, **kwargs) -> RunConfig:
+    """Build RunConfig with Gemini model provider and smart model selection."""
     run_config = kwargs.pop("run_config", None)
     if isinstance(run_config, dict):
         run_config = RunConfig(**run_config)
     if run_config is None:
         run_config = RunConfig()
-    # Always inject our Gemini model provider to ensure correct Gemini configuration
+    
+    # Always inject our Gemini model provider
     run_config.model_provider = _get_gemini_model_provider()
+    
+    # Smart model selection based on message complexity
+    if message:
+        selected_model = get_model_for_request(message)
+        run_config.model = selected_model
+        logger.info("[MODEL_ROUTER] selected_model=%s for message_length=%d",
+                    selected_model, len(message))
+    
     return run_config
 
 
 class CustomRunner:
-    """Custom runner that wraps every run with request ID and elapsed time.
+    """Custom runner that wraps every run with request ID, elapsed time, and smart model routing.
 
     Registered once at startup, no agent definition changes needed.
     """
@@ -84,14 +97,17 @@ class CustomRunner:
         context: RunContextWrapper[StudentContext] | None = None,
         **kwargs,
     ) -> RunResult:
-        """Run the agent with request ID and elapsed time tracking."""
+        """Run the agent with request ID, elapsed time tracking, and smart model routing."""
         request_id = str(uuid.uuid4())[:8]
         self.run_count += 1
+
+        # Extract message text for routing
+        message_text = input if isinstance(input, str) else str(input)
 
         start_time = time.perf_counter()
 
         try:
-            run_config = _build_run_config(**kwargs)
+            run_config = _build_run_config(message=message_text, context=context, **kwargs)
             result = await Runner.run(starting_agent, input, context=context, run_config=run_config)
             elapsed_ms = int((time.perf_counter() - start_time) * 1000)
 
@@ -117,6 +133,9 @@ class CustomRunner:
             # Check if it's a quota error wrapped in a generic exception
             if "429" in str(e) or "quota" in str(e).lower() or "resource_exhausted" in str(e).lower():
                 user_msg = _format_quota_error(e)
+                # Check if we can fallback to simple model
+                if "complex" in str(e).lower() or "3.6-flash" in str(e).lower():
+                    logger.warning("[MODEL_ROUTER] 429 on complex model, fallback logic would apply here")
                 raise RuntimeError(
                     f"Run {self.run_count} (request_id={request_id}) failed after {elapsed_ms}ms: {user_msg}"
                 ) from e

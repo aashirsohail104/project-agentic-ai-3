@@ -18,5 +18,15 @@ def create_gemini_client() -> AsyncOpenAI:
 
 
 def get_model_name() -> str:
-    """Get the model name for agent configuration."""
-    return get_settings().model_name
+    """Get the default model name for agent configuration (complex model)."""
+    return get_settings().complex_model_name
+
+
+def get_simple_model_name() -> str:
+    """Get the simple model name for lightweight requests."""
+    return get_settings().simple_model_name
+
+
+def get_complex_model_name() -> str:
+    """Get the complex model name for heavy requests."""
+    return get_settings().complex_model_name
